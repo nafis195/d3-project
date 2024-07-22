@@ -1,4 +1,6 @@
 import { arc } from "d3";
+import BackgroundCircle from "./BackgroundCircle.jsx";
+import Eye from "./Eye.jsx";
 
 function Face() {
 
@@ -21,35 +23,29 @@ function Face() {
     .startAngle(Math.PI / 2)
     .endAngle(Math.PI * 3/2);
 
+  
   return (
-    <face>
-      <svg width={width} height={height}>
-        <g transform={`translate(${centerX}, ${centerY})`}>
-          <circle 
-              fill="yellow" 
-              stroke="black" 
-              strokeWidth={strokewidth}
-              r={centerY - strokewidth / 2}>
-          </circle>
-          
-          <circle 
-              cx={- eyeOffsetX}
-              cy={- eyeOffsetY}
-              fill="black" 
-              r={eyeRadius}>
-          </circle>
-          
-          <circle 
-              cx={+ eyeOffsetX}
-              cy={- eyeOffsetY}
-              fill="black" 
-              r={eyeRadius}>
-          </circle>
+    <>
+      <face>
+        <svg width={width} height={height}>
+          <g transform={`translate(${centerX}, ${centerY})`}>
+            
+            <BackgroundCircle 
+              radius={centerY - strokewidth/2} 
+              strokeW={strokewidth}>
+            </BackgroundCircle>
 
-          <path d={mouthArc()}></path>
-        </g>
-      </svg>
-    </face>
+            <Eye
+              eyeOffsetX={eyeOffsetX}
+              eyeOffsetY={eyeOffsetY}
+              eyeRadius={eyeRadius}>
+            </Eye>
+
+            <path d={mouthArc()}></path>
+          </g>
+        </svg>
+      </face>
+    </>
   );
 }
 
