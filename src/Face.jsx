@@ -1,6 +1,6 @@
-import { arc } from "d3";
 import BackgroundCircle from "./BackgroundCircle.jsx";
 import Eye from "./Eye.jsx";
+import Mouth from "./Mouth.jsx";
 
 function Face() {
 
@@ -16,12 +16,6 @@ function Face() {
 
   const mouthWidth = 20;                                                                                 20;
   const mouthRadius = 140;
-
-  const mouthArc = arc()
-    .innerRadius(mouthRadius)
-    .outerRadius(mouthRadius + mouthWidth)
-    .startAngle(Math.PI / 2)
-    .endAngle(Math.PI * 3/2);
 
   
   return (
@@ -41,7 +35,11 @@ function Face() {
               eyeRadius={eyeRadius}>
             </Eye>
 
-            <path d={mouthArc()}></path>
+            <Mouth
+              mouthRadius={mouthRadius}
+              mouthWidth={mouthWidth}>
+            </Mouth>
+            
           </g>
         </svg>
       </face>
